@@ -61,3 +61,17 @@ header #initial {
   border-bottom: 1px #ccc solid;
   text-align: center;
 }
+
+#chatMessages {
+  height: calc(100% - 40px - 60px);
+}
+
+#chatResponder {
+  height: 60px;
+}
+
+#chatResponseBox {
+  width: 100%;
+  padding: 5px 20px;
+  height: 50px;
+}
