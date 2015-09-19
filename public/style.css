@@ -15,10 +15,12 @@ header {
 }
 
 #logo {
+  animation-delay: 0.5s;
   width: 50%;
 }
 
 .subtitle {
+  animation-delay: 1s;
   font-size: 3em;
   font-family: 'Lato', sans-serif;
 }
