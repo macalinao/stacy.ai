@@ -32,3 +32,32 @@ header #initial {
   padding: 20px;
   opacity: 0.8;
 }
+
+#chat {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+#chatPane {
+  float: left;
+  height: 100%;
+  width: 400px;
+}
+
+#mainPane {
+  float: left;
+  height: 100%;
+  width: calc(100% - 400px);
+  background-color: black;
+}
+
+#chatLogo {
+  height: 40px;
+}
+
+#chatLogoArea {
+  padding: 5px 0px;
+  border-bottom: 1px #ccc solid;
+  text-align: center;
+}
