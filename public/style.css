@@ -63,7 +63,9 @@ header #initial {
 }
 
 #chatMessages {
-  height: calc(100% - 40px - 60px);
+  height: calc(100% - 50px - 60px);
+  padding: 10px 10px;
+  overflow-y: scroll;
 }
 
 #chatResponder {
@@ -74,4 +76,21 @@ header #initial {
   width: 100%;
   padding: 5px 20px;
   height: 50px;
+}
+
+.msg {
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.from {
+  background-color: #3f8acd;
+  color: #fff;
+  margin-left: 30%;
+}
+
+.to {
+  background-color: #ccc;
+  color: #000;
 }
