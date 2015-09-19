@@ -5,12 +5,7 @@
       <img src="assets/logo.png" id="chatLogo" />
     </div>
     <div id="chatMessages">
-      <p class="msg from">Test</p>
-      <p class="msg to">Test</p>
-      <p class="msg from">Test</p>
-      <p class="msg to">Test</p>
-      <p class="msg from">Test</p>
-      <p class="msg to">Test</p>
+      <p ng-repeat="message in messages" ng-class="message.who" class="msg">{{ message.msg }}</p>
     </div>
     <div id="chatResponder">
       <input type="text" id="chatResponseBox" placeholder="Write a message..." />

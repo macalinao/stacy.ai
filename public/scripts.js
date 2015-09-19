@@ -20,4 +20,25 @@ angular.module('stacy', ['ui.router'])
 })
 
 .controller('ChatCtrl', function($scope) {
+
+  $scope.messages = [{
+    who: 'from',
+    msg: 'Test'
+  }, {
+    who: 'to',
+    msg: 'Test'
+  }, {
+    who: 'from',
+    msg: 'Test'
+  }, {
+    who: 'to',
+    msg: 'Test'
+  }, {
+    who: 'from',
+    msg: 'Test'
+  }, {
+    who: 'from',
+    msg: 'Test'
+  }];
+
 });
