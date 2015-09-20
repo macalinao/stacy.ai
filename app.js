@@ -98,16 +98,16 @@ request('https://api.uber.com/v1/products?latitude=37.7759792&longitude=-122.418
 // });
 
 //request uber 
-app.get('/requestUber', function(req,res){
-request('https://api.uber.com/v1/requests/852b8fdd-4369-4659-9628-e122662ad257&server_token=YliT_3eRG-sh1mttNF97FGbqWnEXu4HuyCIWiQnB', 
-       function(error,response,body){
-               if (!error && response.statusCode == 200) {
-                      //console.log(response);
-                       // var result = JSON.parse(body).products;
-                       res.send(response);
-               }
-       });
-});
+// app.get('/requestUber', function(req,res){
+// request('https://api.uber.com/v1/requests/852b8fdd-4369-4659-9628-e122662ad257&server_token=YliT_3eRG-sh1mttNF97FGbqWnEXu4HuyCIWiQnB', 
+//        function(error,response,body){
+//                if (!error && response.statusCode == 200) {
+//                       //console.log(response);
+//                        // var result = JSON.parse(body).products;
+//                        res.send(response);
+//                }
+//        });
+// });
 
 
 
