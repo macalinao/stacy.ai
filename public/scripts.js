@@ -38,7 +38,6 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
 .controller('ChatCtrl', function($scope, $location) {
 
   $scope.messages = [];
-  $scope.rewards=await capitalOne.getRewards();
   $scope.sendMsg = function() {
     if (!$scope.chatMsg) return;
     sendMsg($scope.chatMsg);
