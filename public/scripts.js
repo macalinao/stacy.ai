@@ -44,6 +44,7 @@ angular.module('stacy', ['ui.router'])
   }];
 
   $scope.sendMsg = function() {
+    if (!$scope.chatMsg) return;
     addMsg('from', $scope.chatMsg);
     socket.emit('msg', $scope.chatMsg);
     $scope.chatMsg = '';
@@ -64,7 +65,9 @@ angular.module('stacy', ['ui.router'])
 
   function onUpdateMsg() {
     var el = $('#chatMessages')[0];
-    el.scrollTop = el.scrollHeight + 100;
+    setTimeout(() => {
+      el.scrollTop = el.scrollHeight;
+    }, 0);
   }
 
 });
