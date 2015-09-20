@@ -46,9 +46,15 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
   };
 
   socket.on('msg', function(msg){
-    addMsg('to', msg);
+    addMsg('to', msg.msg);
+    processMsg(msg);
     $scope.$apply();
   });
+
+  function processMsg(msg) {
+    // todo process msg
+    console.log(msg);
+  }
 
   function sendMsg(msg) {
     addMsg('from', msg);
