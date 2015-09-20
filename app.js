@@ -34,22 +34,42 @@ request('http://maps.googleapis.com/maps/api/geocode/json?address=Bangalore&sens
        function(error,response,body){
                if (!error && response.statusCode == 200) {
                        var result = JSON.parse(body).results;
-                       var address=result[0].geometry.location;
+                       var address=result[0].geometry.location;//this is an object with lat, lng
                        res.send(address);
                }
        });
 });
 
+//hotel code//
+function hotelName&Price(checkin, checkout, langtitude, longtitude){//date must be in form yyyy-mm-dd
+    var url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude="+langtitude+"&longitude="+longtitude+"&radius=50&check_in="+checkin+"&check_out="+checkout+"&chain=RT¤cy=EUR&number_of_results=50&apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO";
+    request(url, function(error,response,body){
+            if(!error && response.statusCode == 200) {
+                    var results = JSON>parse(body).results[0];
+                    var property_name = results.property_name; //name of hotel;
+                    var lat = results.location.latitude; //lat
+                    var lng = results.location.longitude; //lng
+                    var price = results.total_price.amount;
+                    return {name: property_name, lat: lat, lng: lng, price: price};
+             }
+    }
+}
 
-// //get airport code
-// app.get('/airport', function(req,res){
-// request('http://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?latitude=54.9501&longitude=-7.7373&apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO', 
-//        function(error,response,body){
-//                if (!error && response.statusCode == 200) {
-//                        var result = JSON.parse(body).results;
+
+
+
+
+
+//get airport code
+app.get('/airport', function(req,res){
+request('http://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO&latitude=46.6734&longitude=-71.7412', 
+       function(error,response,body){
+               if (!error && response.statusCode == 200) {
+               		   console.log(response);
+                       var result = JSON.parse(body)[0].airport;
          
-//                        res.send(result);
-//                }
-//        });
-// });
+                       res.send(result);
+               }
+       });
+});
 
