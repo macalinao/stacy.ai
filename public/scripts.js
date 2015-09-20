@@ -96,6 +96,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
       };
     }
 
+    updateTotal();
   }
 
   function sendMsg(msg) {
@@ -129,6 +130,19 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
     zoom: 13
   };
 
+  var updateTotal = function() {
+    var sum = 0.00;
+    if ($scope.flight) {
+      sum += parseFloat($scope.flight.in.cost.substring(1))
+        + parseFloat($scope.flight.out.cost.substring(1));
+    }
+    if ($scope.hotel) {
+      sum += parseFloat($scope.hotel.price.substring(1));
+    }
+    $scope.total = '$' + sum.toFixed(2);
+  };
+
+  updateTotal();
 });
 
 function dfmt(d) {
