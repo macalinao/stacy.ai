@@ -2,12 +2,15 @@ import express from 'express';
 import http from 'http';
 import socketIo from 'socket.io';
 import request from 'request';
-
+import connectRedis from 'connect-redis'(express);
 import ai from './lib/ai';
 
 const app = express();
 const server = http.Server(app);
 const io = socketIo(server);
+const redisStore = connectRedis(express);
+const sessionStore = new redisStore();
+const cookieParser = express.cookieParser('ian');
 
 app.use(express.static(`${__dirname}/public/`));
 app.use(`/assets`, express.static(`${__dirname}/assets/`));
