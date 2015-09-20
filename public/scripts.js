@@ -54,6 +54,13 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
   function processMsg(msg) {
     // todo process msg
     console.log(msg);
+    if (msg.session && msg.session.geocode) {
+      var geocode = msg.session.geocode;
+      $scope.map.center = {
+        latitude: geocode.lat,
+        longitude: geocode.lng
+      };
+    }
   }
 
   function sendMsg(msg) {
@@ -84,7 +91,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
       latitude: 45,
       longitude: -73
     },
-    zoom: 8
+    zoom: 13
   };
 
 });
