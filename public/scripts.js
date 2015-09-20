@@ -141,7 +141,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
         + parseFloat($scope.flight.out.cost.substring(1));
     }
     if ($scope.hotel) {
-      sum += parseFloat($scope.hotel.price.substring(1));
+      sum += $scope.hotel.price;
     }
     sum += ubertotal;
     $scope.total = '$' + sum.toFixed(2);
