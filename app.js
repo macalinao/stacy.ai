@@ -29,12 +29,12 @@ server.listen(PORT, () => {
 
 //get uber product
 app.get('/uber', function(req,res){
-request('https://api.uber.com/v1/products?latitude=37.7759792&longitude=-122.41823&server_token=YliT_3eRG-sh1mttNF97FGbqWnEXu4HuyCIWiQnB', 
+request('https://api.uber.com/v1/estimates/price?start_latitude=37.334381&start_longitude=-121.89432&end_latitude=37.77703&end_longitude=-122.419571&server_token=YliT_3eRG-sh1mttNF97FGbqWnEXu4HuyCIWiQnB', 
        function(error,response,body){
                if (!error && response.statusCode == 200) {
-                       var result = JSON.parse(body).products;
-                       var product_id=result[0].product_id;
-                       res.send(product_id);
+                       var result = JSON.parse(body).prices;
+                       var estimate=result[0].estimate;
+                       res.send(estimate);
                }
        });
 });
