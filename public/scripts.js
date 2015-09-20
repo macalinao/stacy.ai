@@ -61,6 +61,27 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
         longitude: geocode.lng
       };
     }
+
+    if (msg.fare) {
+      $scope.flight = {
+        in: {
+          from: msg.fare.in.origin.airport,
+          to: msg.fare.in.destination.airport,
+          num: msg.fare.in.flight_number,
+          dep: msg.fare.in.departs_at,
+          arr: msg.fare.in.arrives_at,
+          cost: '$' + ((10000 + Math.random() * 10000) / 100).toFixed(2)
+        },
+        out: {
+          from: msg.fare.out.origin.airport,
+          to: msg.fare.out.destination.airport,
+          num: msg.fare.out.flight_number,
+          dep: msg.fare.out.departs_at,
+          arr: msg.fare.out.arrives_at,
+          cost: '$' + ((10000 + Math.random() * 10000) / 100).toFixed(2)
+        }
+      };
+    }
   }
 
   function sendMsg(msg) {
