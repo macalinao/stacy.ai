@@ -7,9 +7,6 @@ import ai from './lib/ai';
 const app = express();
 const server = http.Server(app);
 const io = socketIo(server);
-const redisStore = connectRedis(express);
-const sessionStore = new redisStore();
-const cookieParser = express.cookieParser('ian');
 
 app.use(express.static(`${__dirname}/public/`));
 app.use(`/assets`, express.static(`${__dirname}/assets/`));
@@ -27,6 +24,7 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
+<<<<<<< HEAD
 
 //get lat long
 app.get('/google', function(req,res){
@@ -58,3 +56,5 @@ request('http://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=5O
        });
 });
 
+=======
+>>>>>>> a65ef74b11a6ea8cdad92682744a229254f877b6
