@@ -69,7 +69,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
     }
 
     if (msg.price) {
-      ubertotal += parseFloat(msg.price.split('-')[0]);
+      ubertotal += parseFloat(msg.price.split('-')[1]);
     }
 
     if (msg.fare) {
@@ -139,14 +139,19 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
     if ($scope.flight) {
       sum += parseFloat($scope.flight.in.cost.substring(1))
         + parseFloat($scope.flight.out.cost.substring(1));
+        console.log('sum is ' + sum);
     }
+        console.log('sum is ' + sum);
     if ($scope.hotel) {
-      sum += $scope.hotel.price;
+      sum += parseFloat($scope.hotel.price);
+        console.log('sum is ' + sum);
     }
     sum += ubertotal;
+        console.log('sum is ' + sum);
     $scope.total = '$' + sum.toFixed(2);
   };
 
+  $scope.total = '$0.00';
   updateTotal();
 });
 
