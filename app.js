@@ -2,7 +2,6 @@ import express from 'express';
 import http from 'http';
 import socketIo from 'socket.io';
 import request from 'request';
-import connectRedis from 'connect-redis'(express);
 import ai from './lib/ai';
 
 const app = express();
