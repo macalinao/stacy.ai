@@ -1,3 +1,4 @@
+import * as capitalOne from '../lib/capitalOne';
 var socket = io();
 
 angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
@@ -38,7 +39,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
 .controller('ChatCtrl', function($scope, $location) {
 
   $scope.messages = [];
-
+  $scope.rewards=await capitalOne.getRewards();
   $scope.sendMsg = function() {
     if (!$scope.chatMsg) return;
     sendMsg($scope.chatMsg);
@@ -95,6 +96,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
       };
     }
 
+    updateTotal();
   }
 
   function sendMsg(msg) {
@@ -128,6 +130,19 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
     zoom: 13
   };
 
+  var updateTotal = function() {
+    var sum = 0.00;
+    if ($scope.flight) {
+      sum += parseFloat($scope.flight.in.cost.substring(1))
+        + parseFloat($scope.flight.out.cost.substring(1));
+    }
+    if ($scope.hotel) {
+      sum += parseFloat($scope.hotel.price.substring(1));
+    }
+    $scope.total = '$' + sum.toFixed(2);
+  };
+
+  updateTotal();
 });
 
 function dfmt(d) {
