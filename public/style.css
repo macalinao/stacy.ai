@@ -133,3 +133,13 @@ header #initial {
   border-top: 1px #ccc solid;
   padding-top: 10px;
 }
+
+#rewardsBox {
+  float: left;
+  width: 50%;
+  border-right: 1px #ccc solid;
+}
+
+#subdiv div {
+  text-align: center;
+}
