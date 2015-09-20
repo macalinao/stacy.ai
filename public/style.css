@@ -63,13 +63,10 @@ header #initial {
 }
 
 #chatMessages {
-  height: calc(100% - 50px - 60px);
+  height: calc(100% - 50px - 51px);
   padding: 10px 10px;
   overflow-y: scroll;
-}
-
-#chatResponder {
-  height: 60px;
+  border-bottom: 0px;
 }
 
 #chatResponseBox {

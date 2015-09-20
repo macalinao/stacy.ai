@@ -14,39 +14,26 @@ angular.module('stacy', ['ui.router'])
     controller: 'ChatCtrl'
   });
 
-  $urlRouterProvider.otherwise('/chat');
+  $urlRouterProvider.otherwise('/');
 
 })
 
-.controller('HomeCtrl', function($scope) {
+.controller('HomeCtrl', function($scope, $location) {
+
+  $scope.go = function() {
+    if (!$scope.destination) return;
+    $location.path('/chat').search('place=' + $scope.destination);
+  };
+
 })
 
-.controller('ChatCtrl', function($scope) {
+.controller('ChatCtrl', function($scope, $location) {
 
-  $scope.messages = [{
-    who: 'from',
-    msg: 'Test'
-  }, {
-    who: 'to',
-    msg: 'Test'
-  }, {
-    who: 'from',
-    msg: 'Test'
-  }, {
-    who: 'to',
-    msg: 'Test'
-  }, {
-    who: 'from',
-    msg: 'Test'
-  }, {
-    who: 'from',
-    msg: 'Test'
-  }];
+  $scope.messages = [];
 
   $scope.sendMsg = function() {
     if (!$scope.chatMsg) return;
-    addMsg('from', $scope.chatMsg);
-    socket.emit('msg', $scope.chatMsg);
+    sendMsg($scope.chatMsg);
     $scope.chatMsg = '';
   };
 
@@ -54,6 +41,11 @@ angular.module('stacy', ['ui.router'])
     addMsg('to', msg);
     $scope.$apply();
   });
+
+  function sendMsg(msg) {
+    addMsg('from', msg);
+    socket.emit('msg', msg);
+  }
 
   function addMsg(who, msg) {
     $scope.messages.push({
@@ -69,5 +61,8 @@ angular.module('stacy', ['ui.router'])
       el.scrollTop = el.scrollHeight;
     }, 0);
   }
+
+  var place = $location.search().place;
+  sendMsg('Plan my trip to ' + place + '.');
 
 });
