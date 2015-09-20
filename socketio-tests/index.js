@@ -14,13 +14,34 @@ request('http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?origin=IST&
        function(error,response,body){
                if (!error && response.statusCode == 200) {
                        var result = JSON.parse(body).results;
-                       var itineraries = result[0].itineraries[0];
-                       var outbound = itineraries.outbound;
-                       var outbound_flight_1 = outbound.flights[0];
-                       var outbound_flight_2 = outbound.flights[1];
-                       
-                       var inbound = itineraries.inbound; 
-                       res.send(outbound_flight_2);
+                       var numOfResults = result.length;
+                       var itineraries = result[0].itineraries;
+                       var finalResult = ""
+                        console.log(result);
+                       for (var i = 0; i < numOfResults; i++){
+                               var itinerary = itineraries[0];
+                               console.log(itinerary);
+                               var outbound = itinerary.outbound.flights;
+                               var outBoundString = "";
+                               var inbound = itinerary.inbound.flights;
+                               var inBoundString = "";
+                               var numOfOutBound = outbound.length;
+                               console.log(outbound);
+                               var numOfInBound = inbound.length;
+                               for(var j = 0; j < numOfOutBound; j++){
+                                       var flight = outbound[j];
+                                       var result = "departs " + flight.origin.airport + "at " + flight.departs_at + "and arrives" + flight.destination.airport + "at " + flight.arrives_at;
+                                       outBoundString += result;
+                               }
+                               for(var j = 0; j < numOfInBound; j++){
+                                       var flight = inbound[j];
+                                       var result = "departs " + flight.origin.airport + "at " + flight.departs_at + "and arrives" + flight.destination.airport + "at " + flight.arrives_at;
+                                       inBoundString += result;
+                               }
+                               finalResult += "outBound: "+ outBoundString;
+                               finalResult += "inBound: "+ inBoundString;
+                       }
+                       res.send(finalResult);
                }
        });
 });
