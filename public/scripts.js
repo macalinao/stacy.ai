@@ -41,4 +41,22 @@ angular.module('stacy', ['ui.router'])
     msg: 'Test'
   }];
 
+  $scope.sendMsg = function() {
+    addMsg('from', $scope.chatMsg);
+    $scope.chatMsg = '';
+  };
+
+  function addMsg(who, msg) {
+    $scope.messages.push({
+      who: who,
+      msg: msg
+    });
+    onUpdateMsg();
+  }
+
+  function onUpdateMsg() {
+    var el = $('#chatMessages')[0];
+    el.scrollTop = el.scrollHeight;
+  }
+
 });

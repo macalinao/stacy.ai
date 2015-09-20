@@ -8,7 +8,11 @@
       <p ng-repeat="message in messages" ng-class="message.who" class="msg">{{ message.msg }}</p>
     </div>
     <div id="chatResponder">
-      <input type="text" id="chatResponseBox" placeholder="Write a message..." />
+      <form ng-submit="sendMsg()">
+        <input type="text" id="chatResponseBox"
+          placeholder="Write a message..."
+          ng-model="chatMsg" />
+      </form>
     </div>
   </div>
 
