@@ -20,7 +20,8 @@ io.on('connection', (socket) => {
     if (aiExec.prefix) socket.emit('msg', {
       msg: aiExec.prefix
     });
-    socket.emit('msg', await aiExec.executor);
+    const res = await aiExec.executor;
+    socket.emit('msg', res);
   });
 });
 
