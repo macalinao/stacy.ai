@@ -16,7 +16,11 @@ io.on('connection', (socket) => {
   socket.on('msg', async (msg) => {
     // process the message
     console.log(`[MSG] ${msg}`);
-    socket.emit('msg', await ai(session, msg));
+    let aiExec = ai(session, msg);
+    if (aiExec.prefix) socket.emit('msg', {
+      msg: aiExec.prefix
+    });
+    socket.emit('msg', await aiExec.executor);
   });
 });
 
