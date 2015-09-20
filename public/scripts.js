@@ -46,8 +46,13 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
   };
 
   socket.on('msg', function(msg){
-    addMsg('to', msg.msg);
-    processMsg(msg);
+    if (!Array.isArray(msg.msg)) {
+      msg.msg = [msg.msg];
+    }
+    msg.msg.forEach(function(m) {
+      addMsg('to', m);
+      processMsg(msg);
+    });
     $scope.$apply();
   });
 
@@ -61,6 +66,35 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
         longitude: geocode.lng
       };
     }
+
+    if (msg.fare) {
+      $scope.flight = {
+        in: {
+          from: msg.fare.in.origin.airport,
+          to: msg.fare.in.destination.airport,
+          num: msg.fare.in.flight_number,
+          dep: dfmt(msg.fare.in.departs_at),
+          arr: dfmt(msg.fare.in.arrives_at),
+          cost: msg.fare.in.cost
+        },
+        out: {
+          from: msg.fare.out.origin.airport,
+          to: msg.fare.out.destination.airport,
+          num: msg.fare.out.flight_number,
+          dep: dfmt(msg.fare.out.departs_at),
+          arr: dfmt(msg.fare.out.arrives_at),
+          cost: msg.fare.out.cost
+        }
+      };
+    }
+
+    if (msg.hotel) {
+      $scope.hotel = {
+        name: msg.hotel.name,
+        price: msg.hotel.price
+      };
+    }
+
   }
 
   function sendMsg(msg) {
@@ -95,3 +129,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
   };
 
 });
+
+function dfmt(d) {
+  return moment(d).format('MM-DD HH:mm a')
+}

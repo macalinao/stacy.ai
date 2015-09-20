@@ -5,7 +5,7 @@
       <img src="assets/logo.png" id="chatLogo" />
     </div>
     <div id="chatMessages">
-      <p ng-repeat="message in messages" ng-class="message.who" class="msg">{{ message.msg }}</p>
+      <p ng-repeat="message in messages" ng-class="message.who" class="msg animated fadeInDown">{{ message.msg }}</p>
     </div>
     <div id="chatResponder">
       <form ng-submit="sendMsg()">
@@ -23,15 +23,30 @@
           <h3>Flight</h3>
 
           <div id="flightInfo">
-            <h4><span class="label label-danger">Depart</span> Spirit Airlines Flight 320 ($420)</h4>
-            <p><strong>Date: </strong> 4:20 AM - 8:40AM (4 hours)</p>
-            <h4><span class="label label-success">Return</span> Spirit Airlines Flight 320 ($420)</h4>
-            <p><strong>Date: </strong> 4:20 AM - 8:40AM (4 hours)</p>
+            <div ng-if="flight">
+              <h4><span class="label label-danger">Depart</span> Spirit Airlines Flight {{ flight.out.num }} ({{ flight.out.cost }})</h4>
+              <p><strong>Date: </strong> {{ flight.out.dep }} - {{ flight.out.arr }}</p>
+              <h4><span class="label label-success">Return</span> Spirit Airlines Flight {{ flight.in.num }} ({{ flight.in.cost }})</h4>
+              <p><strong>Date: </strong> {{ flight.in.dep }} - {{ flight.in.arr }}</p>
+            </div>
+            <p ng-if="!flight">You haven't selected a flight yet.</p>
           </div>
 
         </div>
         <div id="hotelPanel" class="col-md-6">
           <h3>Hotel</h3>
+          <h4 ng-if="hotel">{{ hotel.name }} ({{ hotel.price }})</h4>
+          <p ng-if="!hotel">Please select a hotel.</p>
+          <div id="subdiv" class="borderup">
+            <div id="rewardsBox">
+              <h3>Rewards</h3>
+              <h4>100 points</h4>
+            </div>
+            <div id="totalBox">
+              <h3>Total</h3>
+              <h4>$123.54</h4>
+            </div>
+          </div>
         </div>
       </div>
       <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
