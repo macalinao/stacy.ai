@@ -39,13 +39,11 @@ request('http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?origin=IST&
                        var finalResult = ""
                        for (var i = 0; i < numOfResults; i++){
                                var itinerary = itineraries[0];
-                               console.log(itinerary);
                                var outbound = itinerary.outbound.flights;
                                var outBoundString = "";
                                var inbound = itinerary.inbound.flights;
                                var inBoundString = "";
                                var numOfOutBound = outbound.length;
-                               console.log(outbound);
                                var numOfInBound = inbound.length;
                                for(var j = 0; j < numOfOutBound; j++){
                                        var flight = outbound[j];
