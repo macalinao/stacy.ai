@@ -16,10 +16,11 @@ app.use(express.static(`${__dirname}/public/`));
 app.use(`/assets`, express.static(`${__dirname}/assets/`));
 
 io.on('connection', (socket) => {
+  let session = {};
   socket.on('msg', async (msg) => {
     // process the message
     console.log(`[MSG] ${msg}`);
-    socket.emit('msg', await ai(msg));
+    socket.emit('msg', await ai(session, msg));
   });
 });
 
