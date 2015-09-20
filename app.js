@@ -39,22 +39,3 @@ function hotelNameAndPrice(checkin, checkout, langtitude, longtitude){//date mus
              }
     });
 }
-
-
-
-
-
-
-//get airport code
-app.get('/airport', function(req,res){
-request('http://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO&latitude=46.6734&longitude=-71.7412', 
-       function(error,response,body){
-               if (!error && response.statusCode == 200) {
-               		   console.log(response);
-                       var result = JSON.parse(body)[0].airport;
-         
-                       res.send(result);
-               }
-       });
-});
-
