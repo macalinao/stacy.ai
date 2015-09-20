@@ -46,14 +46,13 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
   };
 
   socket.on('msg', function(msg){
-    if (Array.isArray(msg.msg)) {
-      msg.msg.forEach(function(m) {
-        addMsg('to', m);
-      });
-    } else {
-      addMsg('to', msg.msg);
+    if (!Array.isArray(msg.msg)) {
+      msg.msg = [msg.msg];
     }
-    processMsg(msg);
+    msg.msg.forEach(function(m) {
+      addMsg('to', m);
+      processMsg(msg);
+    });
     $scope.$apply();
   });
 
