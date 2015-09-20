@@ -70,7 +70,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
           num: msg.fare.in.flight_number,
           dep: msg.fare.in.departs_at,
           arr: msg.fare.in.arrives_at,
-          cost: '$' + ((10000 + Math.random() * 10000) / 100).toFixed(2)
+          cost: msg.fare.in.cost
         },
         out: {
           from: msg.fare.out.origin.airport,
@@ -78,7 +78,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
           num: msg.fare.out.flight_number,
           dep: msg.fare.out.departs_at,
           arr: msg.fare.out.arrives_at,
-          cost: '$' + ((10000 + Math.random() * 10000) / 100).toFixed(2)
+          cost: msg.fare.in.cost
         }
       };
     }
