@@ -128,3 +128,8 @@ header #initial {
 #flightInfo h4 {
   font-size: 18px;
 }
+
+.borderup {
+  border-top: 1px #ccc solid;
+  padding-top: 10px;
+}
