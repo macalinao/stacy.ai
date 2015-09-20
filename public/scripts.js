@@ -55,6 +55,8 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
     $scope.$apply();
   });
 
+  var ubertotal = 0;
+
   function processMsg(msg) {
     // todo process msg
     console.log(msg);
@@ -64,6 +66,10 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
         latitude: geocode.lat,
         longitude: geocode.lng
       };
+    }
+
+    if (msg.price) {
+      ubertotal += parseFloat(msg.price.split('-')[0]);
     }
 
     if (msg.fare) {
@@ -137,6 +143,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
     if ($scope.hotel) {
       sum += parseFloat($scope.hotel.price.substring(1));
     }
+    sum += ubertotal;
     $scope.total = '$' + sum.toFixed(2);
   };
 
