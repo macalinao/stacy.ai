@@ -57,15 +57,16 @@ function hotelName&Price(checkin, checkout, langtitude, longtitude){//date must 
 
 
 
-// //get airport code
-// app.get('/airport', function(req,res){
-// request('http://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?latitude=54.9501&longitude=-7.7373&apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO', 
-//        function(error,response,body){
-//                if (!error && response.statusCode == 200) {
-//                        var result = JSON.parse(body).results;
+//get airport code
+app.get('/airport', function(req,res){
+request('http://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO&latitude=46.6734&longitude=-71.7412', 
+       function(error,response,body){
+               if (!error && response.statusCode == 200) {
+               		   console.log(response);
+                       var result = JSON.parse(body)[0].airport;
          
-//                        res.send(result);
-//                }
-//        });
-// });
+                       res.send(result);
+               }
+       });
+});
 
