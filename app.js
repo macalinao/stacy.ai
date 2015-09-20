@@ -2,6 +2,8 @@ import express from 'express';
 import http from 'http';
 import socketIo from 'socket.io';
 
+import ai from './lib/ai';
+
 const app = express();
 const server = http.Server(app);
 const io = socketIo(server);
@@ -10,12 +12,10 @@ app.use(express.static(`${__dirname}/public/`));
 app.use(`/assets`, express.static(`${__dirname}/assets/`));
 
 io.on('connection', (socket) => {
-  socket.on('msg', (msg) => {
+  socket.on('msg', async (msg) => {
     // process the message
-    console.log(`> ${msg}`);
-    setTimeout(() => {
-      socket.emit('msg', 'Cool!');
-    }, 500);
+    console.log(`[MSG] ${msg}`);
+    socket.emit('msg', await ai(msg));
   });
 });
 
