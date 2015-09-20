@@ -2,6 +2,9 @@
   <header>
     <img src="assets/logo@2x.png" id="logo" class="animated bounceIn" />
     <p class="subtitle animated fadeInDown">Plan your trip intelligently.</p>
-    <input type="text" id="initial" placeholder="Where would you like to go?" />
+    <form ng-submit="go()">
+      <input type="text" id="initial"
+        placeholder="Where would you like to go?" ng-model="destination" />
+    </form>
   </header>
 </div>
