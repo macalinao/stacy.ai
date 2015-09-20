@@ -75,14 +75,17 @@ request('http://maps.googleapis.com/maps/api/geocode/json?address=Bangalore&sens
        });
 });
 
-//get airport code
-app.get('/airport', function(req,res){
-request('http://maps.googleapis.com/maps/api/geocode/json?address=Bangalore&sensor=false',
-       function(error,response,body){
-               if (!error && response.statusCode == 200) {
-                       var result = JSON.parse(body).results;
-                       var address=result[0].geometry.location;
-                       res.send(address);
-               }
-       });
-});
+
+// //get airport code
+// app.get('/airport', function(req,res){
+// request('http://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?latitude=54.9501&longitude=-7.7373&apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO', 
+//        function(error,response,body){
+//                if (!error && response.statusCode == 200) {
+//                        var result = JSON.parse(body).results;
+         
+//                        res.send(result);
+//                }
+//        });
+// });
+
+
