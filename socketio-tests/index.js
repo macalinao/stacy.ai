@@ -10,7 +10,8 @@ app.get('/', function(req, res){
 });
 
 app.get('/marie', function(req,res){
-request('http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?origin=IST&destination=BOS&departure_date=2015-10-15&return_date=2015-10-21&number_of_results=3&apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO', 
+var destination="BOS";
+request('http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?origin=IST&destination={0}&departure_date=2015-10-15&return_date=2015-10-21&number_of_results=3&apikey=5O8rga7DF6pJAnARH4b18YfJvF8nieSO'.format(destination),
        function(error,response,body){
                if (!error && response.statusCode == 200) {
                        var result = JSON.parse(body).results;
