@@ -82,6 +82,14 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
         }
       };
     }
+
+    if (msg.hotel) {
+      $scope.hotel = {
+        name: msg.hotel.name,
+        price: msg.hotel.price
+      };
+    }
+
   }
 
   function sendMsg(msg) {
