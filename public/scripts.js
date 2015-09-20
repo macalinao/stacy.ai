@@ -1,4 +1,3 @@
-import * as capitalOne from '../lib/capitalOne';
 var socket = io();
 
 angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
