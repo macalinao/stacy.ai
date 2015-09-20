@@ -1,6 +1,14 @@
 var socket = io();
 
-angular.module('stacy', ['ui.router'])
+angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
+
+.config(function(uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    //    key: 'your api key',
+    v: '3.20', //defaults to latest 3.X anyhow
+    libraries: 'weather,geometry,visualization'
+  });
+})
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -64,5 +72,13 @@ angular.module('stacy', ['ui.router'])
 
   var place = $location.search().place;
   sendMsg('Plan my trip to ' + place + '.');
+
+  $scope.map = {
+    center: {
+      latitude: 45,
+      longitude: -73
+    },
+    zoom: 8
+  };
 
 });
