@@ -91,7 +91,7 @@ angular.module('stacy', ['ui.router', 'uiGmapgoogle-maps'])
       latitude: 45,
       longitude: -73
     },
-    zoom: 8
+    zoom: 13
   };
 
 });
