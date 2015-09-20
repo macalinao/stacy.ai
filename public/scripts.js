@@ -1,3 +1,5 @@
+var socket = io();
+
 angular.module('stacy', ['ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -43,8 +45,14 @@ angular.module('stacy', ['ui.router'])
 
   $scope.sendMsg = function() {
     addMsg('from', $scope.chatMsg);
+    socket.emit('msg', $scope.chatMsg);
     $scope.chatMsg = '';
   };
+
+  socket.on('msg', function(msg){
+    addMsg('to', msg);
+    $scope.$apply();
+  });
 
   function addMsg(who, msg) {
     $scope.messages.push({
@@ -56,7 +64,7 @@ angular.module('stacy', ['ui.router'])
 
   function onUpdateMsg() {
     var el = $('#chatMessages')[0];
-    el.scrollTop = el.scrollHeight;
+    el.scrollTop = el.scrollHeight + 100;
   }
 
 });
